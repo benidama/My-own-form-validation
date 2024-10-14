@@ -3,11 +3,15 @@ const names = document.getElementById("fullName");
 const email = document.getElementById("email");
 const age = document.getElementById("age");
 const checkbox = document.getElementById("checkbox");
+const password = document.getElementById("password");
+const confirmation = document.getElementById("confirmation");
 
 const namesError = document.getElementById("nameError");
 const emailError = document.getElementById("emailError");
 const ageError = document.getElementById("ageError");
 const checkError = document.getElementById("checkError");
+const passwordError = document.getElementById("passwordError");
+const confirmError = document.getElementById("confirmError");
 
 form.addEventListener("submit", (el) => {
   el.preventDefault();
@@ -42,6 +46,24 @@ function submitForm() {
     email.style.border = "1px solid red";
   } else {
     email.style.border = "1px solid green";
+  }
+
+  const passwordValue = password.value.trim();
+  if (passwordValue.length < 8) {
+    passwordError.textContent = "Min characters are 8";
+    password.style.border = "1px solid red";
+    passwordError.style.color = "red";
+  } else {
+    password.style.border = "1px solid green";
+  }
+
+  const confirmationValue = confirmation.value.trim();
+  if (confirmationValue !== passwordValue) {
+    confirmError.textContent = "Please, enter the same password as above";
+    confirmation.style.border = "1px solid red";
+    confirmError.style.color = "red";
+  } else {
+    confirmation.style.border = "1px solid green";
   }
 
   if (checkbox.checked === false) {
